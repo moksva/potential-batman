@@ -1,0 +1,28 @@
+c:\users\sedur\documents\visual studio 2010\Projects\GPS\GPS\bin\GPS.dll
+c:\users\sedur\documents\visual studio 2010\Projects\GPS\GPS\bin\GPS.pdb
+c:\users\sedur\documents\visual studio 2010\Projects\GPS\GPS\bin\EntityFramework.dll
+c:\users\sedur\documents\visual studio 2010\Projects\GPS\GPS\bin\EntityFramework.xml
+c:\users\sedur\documents\visual studio 2010\Projects\GPS\GPS\obj\Debug\ResolveAssemblyReference.cache
+c:\users\sedur\documents\visual studio 2010\Projects\GPS\GPS\obj\Debug\GPS.dll
+c:\users\sedur\documents\visual studio 2010\Projects\GPS\GPS\obj\Debug\GPS.pdb
+C:\Users\Sedur\Dropbox\GPS\GPS\bin\GPS.dll
+C:\Users\Sedur\Dropbox\GPS\GPS\bin\GPS.pdb
+C:\Users\Sedur\Dropbox\GPS\GPS\bin\EntityFramework.dll
+C:\Users\Sedur\Dropbox\GPS\GPS\bin\EntityFramework.xml
+C:\Users\Sedur\Dropbox\GPS\GPS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Sedur\Dropbox\GPS\GPS\obj\Debug\GPS.dll
+C:\Users\Sedur\Dropbox\GPS\GPS\obj\Debug\GPS.pdb
+F:\GPS\GPS\bin\GPS.dll
+F:\GPS\GPS\bin\GPS.pdb
+F:\GPS\GPS\bin\EntityFramework.dll
+F:\GPS\GPS\bin\EntityFramework.xml
+F:\GPS\GPS\obj\Debug\ResolveAssemblyReference.cache
+F:\GPS\GPS\obj\Debug\GPS.dll
+F:\GPS\GPS\obj\Debug\GPS.pdb
+C:\Users\MORD\Documents\Visual Studio 2010\Projects\GPS\GPS\bin\GPS.dll
+C:\Users\MORD\Documents\Visual Studio 2010\Projects\GPS\GPS\bin\GPS.pdb
+C:\Users\MORD\Documents\Visual Studio 2010\Projects\GPS\GPS\bin\EntityFramework.dll
+C:\Users\MORD\Documents\Visual Studio 2010\Projects\GPS\GPS\bin\EntityFramework.xml
+C:\Users\MORD\Documents\Visual Studio 2010\Projects\GPS\GPS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\MORD\Documents\Visual Studio 2010\Projects\GPS\GPS\obj\Debug\GPS.dll
+C:\Users\MORD\Documents\Visual Studio 2010\Projects\GPS\GPS\obj\Debug\GPS.pdb

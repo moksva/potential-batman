@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Consultas";
+}
+
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="../../Scripts/google.maps.Polygon.contains.js"></script>
+
+<script type="text/javascript" >
+    var shape ={
+        coord:[1,1,1,20,18,20,18,1],
+        type:'poly'
+    };
+    var vehiculos = new Array();
+    var patrullas = new Array();
+
+    var carro = eval({
+        "tipo1": new google.maps.MarkerImage('../../Content/themes/base/images/grua1.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo2": new google.maps.MarkerImage('../../Content/themes/base/images/grua2.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo3": new google.maps.MarkerImage('../../Content/themes/base/images/grua3.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo4": new google.maps.MarkerImage('../../Content/themes/base/images/grua4.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo5": new google.maps.MarkerImage('../../Content/themes/base/images/vehicle1.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo6": new google.maps.MarkerImage('../../Content/themes/base/images/vehicle2.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo7": new google.maps.MarkerImage('../../Content/themes/base/images/vehicle3.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo8": new google.maps.MarkerImage('../../Content/themes/base/images/vehicle4.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo9": new google.maps.MarkerImage('../../Content/themes/base/images/vehicle5.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo10": new google.maps.MarkerImage('../../Content/themes/base/images/vehicle6.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32)),
+        "tipo11": new google.maps.MarkerImage('../../Content/themes/base/images/vehicle7.png', new google.maps.Size(25, 35), new google.maps.Point(0, 0), new google.maps.Point(0, 32))
+    });
+
+    $(document).ready(function () {
+        setMenu();
+        var mapOptions = {
+            zoom: 13,
+            center: new google.maps.LatLng(19.23266310243551, -103.70280895396729),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+
+        //var directionsDisplay = new google.maps.DirectionsRenderer();
+        //var directionsService = new google.maps.DirectionsService();
+        //directionsDisplay.setMap(map);
+        var id = 0;
+        setInterval(function () {
+            $.ajax({
+                type: "POST",
+                url: "../Automovil/gps_ultimaposicion",
+                data: "id=" + id,
+                beforeSend: function () { },
+                success: function (info) {
+                    console.log(info);
+                    $.each(info, function (index, value) {
+                        var latlng = new google.maps.LatLng(value.Latitud_Gps, value.Longitud_Gps);
+                        vehiculos.push({
+                            cve_gps: value.Cve_Gps,
+                            latlng: latlng,
+                            Estado_Vehiculo: value.Estado_Vehiculo,
+                            Fec_Envio: value.Fec_Envio,
+                            Hora_Envio: value.Hora_Envio,
+                            Velocidad: value.Velocidad
+                        });
+
+                        var tr = '<tr><td></td><td></td><td></td><td></td><td></td></tr>';
+                        //alert(tr);
+                        $("#movilEstado tbody").append(tr);
+
+                    });
+
+
+                }
+            });
+
+        }, 5000);
+
+
+        $("#recorrido").click(function () {
+            console.log(vehiculos);
+            for (i in vehiculos) {
+                console.log(i + " " + vehiculos[i].latlng);
+                patrullas[i] = new google.maps.Marker({
+                    position: vehiculos[i].latlng,
+                    map: map,
+                    icon: carro.tipo1,
+                    shape: shape,
+                    title: "hola",
+                    //zIndex: i,
+                    draggable: true
+                });
+            }
+            console.log(patrullas);
+        });
+
+    });
+</script>
+
+<div id="sidebar1">
+		<div id="box1">
+			<h2>Opciones</h2>
+			<ul class="style1">
+				<li class="first"><a href="#" class="link-style" id="recorrido">Recorrido</a></li>
+			</ul>
+            <table id="movilEstado" class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Clave</th>
+                        <th>Estado</th>
+                        <th>Hora</th>
+                        <th>ver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+		</div>
+	</div>
+	<div id="content">
+		<h2>Mapa de la ciudad</h2>
+		<div id="mapa"></div>
+		<p>dasdasdasd asda sda sdas dasd asdasfrgtrhetyj rtuity oyui yuopuio lrt ther tewrtw trytryu tyui uo tj sg erfewr gert yjkyuk t</p>
+	</div>

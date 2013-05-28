@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GPS_TRAKER" Class="GpsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.1.91;Initial Catalog=GPS_TRAKER;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GPS_TRAKERConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cat_Perfiles" Member="Cat_Perfiles">
+    <Type Name="Cat_Perfiles">
+      <Column Name="Cve_Perfil" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Txt_Perfil" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Actualiza" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cat_Perfiles_Ctrl_Usuarios" Member="Ctrl_Usuarios" ThisKey="Cve_Perfil" OtherKey="Cve_Perfil" Type="Ctrl_Usuarios" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cat_Status_Vehiculo" Member="Cat_Status_Vehiculo">
+    <Type Name="Cat_Status_Vehiculo">
+      <Column Name="Cve_Tipo_Vehiculo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cve_Status_Vehiculo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Txt_Status_Vehiculo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Actualiza" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cat_Status_Vehiculo_Ctrl_Vehiculos" Member="Ctrl_Vehiculos" ThisKey="Cve_Status_Vehiculo,Cve_Tipo_Vehiculo" OtherKey="Cve_Status_Vehiculo,Cve_Tipo_Vehiculo" Type="Ctrl_Vehiculos" />
+      <Association Name="Cat_Tipo_Vehiculo_Cat_Status_Vehiculo" Member="Cat_Tipo_Vehiculo" ThisKey="Cve_Tipo_Vehiculo" OtherKey="Cve_Tipo_Vehiculo" Type="Cat_Tipo_Vehiculo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cat_Tipo_Vehiculo" Member="Cat_Tipo_Vehiculo">
+    <Type Name="Cat_Tipo_Vehiculo">
+      <Column Name="Cve_Tipo_Vehiculo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Txt_Tipo_Vehiculo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Actualiza" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cat_Tipo_Vehiculo_Cat_Status_Vehiculo" Member="Cat_Status_Vehiculo" ThisKey="Cve_Tipo_Vehiculo" OtherKey="Cve_Tipo_Vehiculo" Type="Cat_Status_Vehiculo" />
+      <Association Name="Cat_Tipo_Vehiculo_Ctrl_Vehiculos" Member="Ctrl_Vehiculos" ThisKey="Cve_Tipo_Vehiculo" OtherKey="Cve_Tipo_Vehiculo" Type="Ctrl_Vehiculos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cat_Unidad_Gps" Member="Cat_Unidad_Gps">
+    <Type Name="Cat_Unidad_Gps">
+      <Column Name="Cve_GPS" Type="System.String" DbType="VarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Num_Tel_Cel" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Num_Serie" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Actualiza" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cat_Unidad_Gps_Ctrl_Gps_Posicion" Member="Ctrl_Gps_Posicion" ThisKey="Cve_GPS" OtherKey="Cve_Gps" Type="Ctrl_Gps_Posicion" />
+      <Association Name="Cat_Unidad_Gps_Ctrl_Vehiculos" Member="Ctrl_Vehiculos" ThisKey="Cve_GPS" OtherKey="Cve_Gps" Type="Ctrl_Vehiculos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ctrl_Gps_Posicion" Member="Ctrl_Gps_Posicion">
+    <Type Name="Ctrl_Gps_Posicion">
+      <Column Name="Cve_Ctrl_Gps" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cve_Gps" Type="System.String" DbType="VarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Txt_Msj_Posicion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Envio_Posicion" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Num_Tel_Cel" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Señal_Gps" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Fix_Time_Gps" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Datos_Validos_Gps" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Latitud_Gps" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Indicador_Latitud_Gps" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Longitud_Gps" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Indicador_Longitud_Gps" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Velocidad_Gps" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IP_Gps" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Puerto_Gps" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cat_Unidad_Gps_Ctrl_Gps_Posicion" Member="Cat_Unidad_Gps" ThisKey="Cve_Gps" OtherKey="Cve_GPS" Type="Cat_Unidad_Gps" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ctrl_Usuarios" Member="Ctrl_Usuarios">
+    <Type Name="Ctrl_Usuarios">
+      <Column Name="Cve_Usuario" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Txt_Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Txt_Paterno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Txt_Materno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Txt_Puesto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Num_Tel_Cel" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Txt_Email" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cve_Perfil" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Actualiza" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cat_Perfiles_Ctrl_Usuarios" Member="Cat_Perfiles" ThisKey="Cve_Perfil" OtherKey="Cve_Perfil" Type="Cat_Perfiles" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ctrl_Vehiculos" Member="Ctrl_Vehiculos">
+    <Type Name="Ctrl_Vehiculos">
+      <Column Name="Cve_Vehiculo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cve_Gps" Type="System.String" DbType="VarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cve_Tipo_Vehiculo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cve_Status_Vehiculo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Num_Serie_Niv" Type="System.String" DbType="VarChar(17) NOT NULL" CanBeNull="false" />
+      <Column Name="Num_Placa" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Txt_sitio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Num_Economico" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Txt_Marca" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Txt_Sub_Marca" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Num_Cilindros" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Actualiza" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cat_Status_Vehiculo_Ctrl_Vehiculos" Member="Cat_Status_Vehiculo" ThisKey="Cve_Status_Vehiculo,Cve_Tipo_Vehiculo" OtherKey="Cve_Status_Vehiculo,Cve_Tipo_Vehiculo" Type="Cat_Status_Vehiculo" IsForeignKey="true" />
+      <Association Name="Cat_Tipo_Vehiculo_Ctrl_Vehiculos" Member="Cat_Tipo_Vehiculo" ThisKey="Cve_Tipo_Vehiculo" OtherKey="Cve_Tipo_Vehiculo" Type="Cat_Tipo_Vehiculo" IsForeignKey="true" />
+      <Association Name="Cat_Unidad_Gps_Ctrl_Vehiculos" Member="Cat_Unidad_Gps" ThisKey="Cve_Gps" OtherKey="Cve_GPS" Type="Cat_Unidad_Gps" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Sp_Reportes" Method="Sp_Reportes">
+    <Parameter Name="Cve_Gps" Parameter="cve_Gps" Type="System.String" DbType="VarChar(16)" />
+    <Parameter Name="Fec_Desde" Parameter="fec_Desde" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="Fec_Hasta" Parameter="fec_Hasta" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="Hora_Desde" Parameter="hora_Desde" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="Hora_Hasta" Parameter="hora_Hasta" Type="System.String" DbType="VarChar(15)" />
+    <ElementType Name="Sp_ReportesResult">
+      <Column Name="Cve_Ctrl_Gps" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cve_Gps" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Num_Placa" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Num_Serie_Niv" Type="System.String" DbType="VarChar(17) NOT NULL" CanBeNull="false" />
+      <Column Name="Txt_Tipo_Vehiculo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Envio_Posicion" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Hora_Envio_Posicion" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Latitud_Gps" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Longitud_Gps" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Txt_Status_Vehiculo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_GPS" Method="SP_GPS">
+    <ElementType Name="SP_GPSResult">
+      <Column Name="Cve_Gps" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Fec_Envio" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Hora_Envio" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Latitud_Gps" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Longitud_Gps" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Velocidad" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado_Vehiculo" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>
